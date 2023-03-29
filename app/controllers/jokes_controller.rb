@@ -5,7 +5,7 @@ class JokesController < ApplicationController
         render json: jokes
     end
     def show
-            joke = Joke.includes(:author).find_by(id: params[:id])
+            joke = Joke.includes(:author).all.sample
         if     joke
             render json: joke.to_json(include: { author: { only: [:name] } })
         else
